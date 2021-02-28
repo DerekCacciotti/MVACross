@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MVA.SignUp">
+    <ContentPage.Content>
+         <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0">
+                <Label Text="Please fill out this form to create a account" />
+                <Entry x:Name="txtUserName"
+                       Placeholder="Username">
+                    <Entry.Behaviors>
+
+                    </Entry.Behaviors>
+                </Entry>
+                <Entry x:Name="txtEmail" Placeholder="Email Address" Keyboard="Email" ></Entry>
+                <Entry x:Name="txtPassword"
+                       Placeholder="Password"
+                       IsPassword="True">
+                    <Entry.Behaviors>
+                    </Entry.Behaviors>
+                </Entry>
+
+            <Picker Title="Highest Degree" x:Name="pickerHighestDegree" ItemDisplayBinding="{Binding degreeName}" SelectedItem="{Binding codeDegreePk}" />
+
+                <Picker Title="Industry" x:Name="pickerIndustry" ItemDisplayBinding="{Binding industryName}"  SelectedItem="{Binding codeIndustryPk}"/>
+               
+                <Button Grid.Row="1" Text="Create Account" x:Name="createAccountButton" Clicked="createAccountButton_Clicked"></Button>
+            </StackLayout>
+             </Grid>
+        </ContentPage.Content>
+</ContentPage>

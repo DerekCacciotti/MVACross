@@ -22,7 +22,7 @@ namespace MVA
 
             pickerResearchType.ItemsSource = Utilities.GetResearchTypes();
             pickerResearchType.SelectedIndex = 0;
-            //NavigationPage.SetBackButtonTitle(this, "Back");
+            NavigationPage.SetBackButtonTitle(this, "Back");
         }
 
         void btnNewProjectNext_Clicked(System.Object sender, System.EventArgs e)
@@ -54,7 +54,7 @@ namespace MVA
                 projectInit.RoleFK = role.codeRolePk;
                 projectInit.OutputTypeFK = outputType.idcodeOutputTypePk;
                 projectInit.ResearchTypeFK = resarchTypes.idcodeResearchTypePk;
-
+                Navigation.PushAsync(new NewCriteraPage(projectInit));
             }
         }
 

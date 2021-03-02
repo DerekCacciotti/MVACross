@@ -22,7 +22,7 @@
 
                 <Picker  x:Name="pickerOutputType" ItemDisplayBinding="{Binding outputType}" SelectedIndex="{Binding idcodeOutputTypePk}"/>
                
-                <Button Grid.Row="1" Text="Next" x:Name="btnNewProjectNext" Clicked="btnNewProjectNext_Clicked=" ></Button>
+                <Button Grid.Row="1" Text="Next" x:Name="btnNewProjectNext" Clicked="btnNewProjectNext_Clicked" ></Button>
             </StackLayout>
              </Grid>
     </ContentPage.Content>

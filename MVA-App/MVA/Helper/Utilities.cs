@@ -129,6 +129,28 @@ namespace MVA.Helper
 
         }
 
+        public static List<Outlier> GetOutliers()
+        {
+            var clinet = new RestClient(url + "outlier");
+            clinet.RemoteCertificateValidationCallback = (xsender, certificate, chain, sslPolicyErrors) => true;
+            var request = new RestRequest(Method.GET);
+            var respose = clinet.Execute(request);
+
+            if (respose.IsSuccessful)
+            {
+                Outlier select = new Outlier();
+                select.codeOutlierPk = 0;
+                select.outlierType = "--SELECT--";
+                var outlier = JsonConvert.DeserializeObject<OutlierRoot>(respose.Content);
+                outlier.outliersobj.Insert(0, select);
+                return outlier.outliersobj;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 
     }
 }

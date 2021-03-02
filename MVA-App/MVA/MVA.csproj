@@ -32,5 +32,7 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Helper\" />
+    <Folder Include="Models\ProjectModel\" />
+    <Folder Include="Views\" />
   </ItemGroup>
 </Project>

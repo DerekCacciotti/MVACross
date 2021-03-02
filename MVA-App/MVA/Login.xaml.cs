@@ -55,7 +55,7 @@ namespace MVA
                     Application.Current.Properties["Token"] = loginresponse.Token;
                     Application.Current.Properties["User"] = loginresponse.Username;
                     DisplayAlert("Yay", "Login successfull", "OK");
-
+                    Navigation.PushAsync(new HomePage());
                 }
                
             }

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MVA.HomePage"
+             xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Button x:Name="btnSettings" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Text="Settings" Clicked="btnSettings_Clicked" ></Button>
+            <Label Text="Single Case Design MVA"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   FontAttributes="Bold"
+                   FontSize="20"/>
+            <Button x:Name="btnAdd" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Text="Add" Clicked="btnAdd_Clicked"></Button>
+        </StackLayout>
+    </NavigationPage.TitleView>
+   
+    <ContentPage.Content>
+        <ScrollView>
+
+             <StackLayout Padding="10" Margin="5">
+            
+            <Frame IsClippedToBounds="True"
+                HasShadow="True"
+                Padding="0"
+                BackgroundColor="White" >
+                <Frame.Margin>
+                    <OnPlatform x:TypeArguments="Thickness"
+                        Android="10"
+                        iOS="10"/>
+                </Frame.Margin>
+                
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical">
+                    <Image  Source="https://picsum.photos/seed/picsum/1000/900" Aspect="Fill" HeightRequest="200" />
+                    <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" Padding="15">
+                        <Label TextColor="#222" FontSize = "25" Text="View Projects as Interventionst"/>
+                        <Label Text="text goes here" FontSize = "16"/>
+                        <Button Margin="0,25,0,0" Text="View Projects" TextColor="White" BackgroundColor="#0097e6"/>
+                    </StackLayout>
+
+                </StackLayout>
+            </Frame>
+            <Frame IsClippedToBounds="True"
+                HasShadow="True"
+                Padding="0"
+                BackgroundColor="White" >
+                <Frame.Margin>
+                    <OnPlatform x:TypeArguments="Thickness"
+                        Android="10"
+                        iOS="10"/>
+                </Frame.Margin>
+
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical">
+                    <Image  Source="https://picsum.photos/seed/picsum/1000/900" Aspect="Fill" HeightRequest="200" />
+                    <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" Padding="15">
+                        <Label TextColor="#222" FontSize = "25" Text="View Projects as Analyst"/>
+                        <Label Text="text goes here" FontSize = "16"/>
+                        <Button Margin="0,15,0,0" Text="View Projects" TextColor="White" BackgroundColor="#0097e6"/>
+                    </StackLayout>
+
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+
+        </ScrollView>
+   
+    </ContentPage.Content>
+</ContentPage>

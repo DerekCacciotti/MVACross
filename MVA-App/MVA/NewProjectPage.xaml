@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MVA.NewProjectPage">
+    
+    <ContentPage.Content>
+
+            <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0">
+                <Entry x:Name="txtProjectName"
+                       Placeholder="Project Name">
+                    <Entry.Behaviors>
+
+                    </Entry.Behaviors>
+                </Entry>
+              <Picker x:Name="pickerRole" ItemDisplayBinding="{Binding roleName}" SelectedItem="{Binding codeRolePk}"></Picker>
+
+            <Picker  x:Name="pickerResearchType" ItemDisplayBinding="{Binding researchType}" SelectedIndex="{Binding idcodeResearchTypePk}"/>
+
+                <Picker  x:Name="pickerOutputType" ItemDisplayBinding="{Binding outputType}" SelectedIndex="{Binding idcodeOutputTypePk}"/>
+               
+                <Button Grid.Row="1" Text="Next" x:Name="btnNewProjectNext" Clicked="btnNewProjectNext_Clicked=" ></Button>
+            </StackLayout>
+             </Grid>
+    </ContentPage.Content>
+</ContentPage>

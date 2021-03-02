@@ -56,6 +56,80 @@ namespace MVA.Helper
             }
         }
 
+        public static List<Roles> GetRoles()
+        {
+            var clinet = new RestClient(url + "roles");
+            clinet.RemoteCertificateValidationCallback = (xsender, certificate, chain, sslPolicyErrors) => true;
+            var request = new RestRequest(Method.GET);
+            var respose = clinet.Execute(request);
+
+            if(respose.IsSuccessful)
+            {
+                Roles select = new Roles();
+                select.codeRolePk = 0;
+                select.roleName = "--SELECT--";
+                var roles = JsonConvert.DeserializeObject<RootRoles>(respose.Content);
+                roles.rolesobj.Insert(0, select);
+                return roles.rolesobj;
+
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        public static List<ResearchTypes> GetResearchTypes()
+        {
+            var clinet = new RestClient(url + "researchtypes");
+            clinet.RemoteCertificateValidationCallback = (xsender, certificate, chain, sslPolicyErrors) => true;
+            var request = new RestRequest(Method.GET);
+            var respose = clinet.Execute(request);
+
+            if (respose.IsSuccessful)
+            {
+                ResearchTypes select = new ResearchTypes();
+                select.idcodeResearchTypePk = 0;
+                select.researchType = "--SELECT--";
+                var types = JsonConvert.DeserializeObject<ResearchTypesRoot>(respose.Content);
+                types.types.Insert(0, select);
+                return types.types;
+
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+
+        public static List<OutputTypes> GetOutputTypes()
+        {
+            var clinet = new RestClient(url + "output");
+            clinet.RemoteCertificateValidationCallback = (xsender, certificate, chain, sslPolicyErrors) => true;
+            var request = new RestRequest(Method.GET);
+            var respose = clinet.Execute(request);
+
+            if (respose.IsSuccessful)
+            {
+                OutputTypes select = new OutputTypes();
+                select.idcodeOutputTypePk = 0;
+                select.outputType = "--SELECT--";
+                var outputTypes = JsonConvert.DeserializeObject<OutputTypesRoot>(respose.Content);
+                outputTypes.outputtypes.Insert(0, select);
+                return outputTypes.outputtypes;
+
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+
     }
-    }
+}
 

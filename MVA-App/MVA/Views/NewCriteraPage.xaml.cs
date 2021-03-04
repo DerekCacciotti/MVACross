@@ -24,7 +24,8 @@ namespace MVA
             Title = "Add Criteria";
             pickerOutlier.ItemsSource = Utilities.GetOutliers();
             pickerOutlier.SelectedIndex = 0;
-           
+            NavigationPage.SetBackButtonTitle(this, "Back");
+
         }
 
         void btncriteraNext_Clicked(System.Object sender, System.EventArgs e)
@@ -54,6 +55,7 @@ namespace MVA
                 projectCritera.numofBaselinePoints = Convert.ToInt32(txtNumofParticpants.Text);
                 projectCritera.numofinterventionPoints = Convert.ToInt32(txtnumOfInterventionPoints.Text);
                 projectCritera.numOfMinStaggerPoints = Convert.ToInt32(txtnumofmininiumStaggerPoints.Text);
+                projectCritera.numofParticpants = Convert.ToInt32(txtNumofParticpants.Text);
 
                 if(outlier.codeOutlierPk == 0)
                 {
@@ -64,7 +66,7 @@ namespace MVA
                     projectCritera.outlierFK = outlier.codeOutlierPk;
                 }
 
-                // Navigate to particpants screem
+                Navigation.PushAsync(new ProjectVarablesPage(projectCritera));
 
             }
         }

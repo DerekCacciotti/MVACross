@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using MVA.Models;
 using MVA.Models.ProjectModel;
 using MVA.Helper;
-
+using System.Linq;
 using Xamarin.Forms;
 
 namespace MVA
@@ -25,9 +25,81 @@ namespace MVA
             for(int i = 0; i < newProjectVarables.critera.numofParticpants; i++)
             {
                 Entry entrypartipant = new Entry();
-                entrypartipant.Placeholder = "Particpant " + i.ToString();
+                entrypartipant.Placeholder = "Particpant " + (i + 1).ToString();
                 stacklayout.Children.Add(entrypartipant);
             }
         }
+
+        void btnSubmit_Clicked(System.Object sender, System.EventArgs e)
+        {
+            var isValid = ValidateInput();
+
+            if(!isValid)
+            {
+                DisplayAlert("Error", "One or more of the Partipants input boxes is empty. Please review your input and try again", "OK");
+            }
+            else
+            {
+                NewProjectParticpants newProjectParticpants = new NewProjectParticpants();
+                newProjectParticpants.newProjectVarables = _projectData;
+                newProjectParticpants.InterventionstCode = Utilities.GeneratePassword();
+                newProjectParticpants.AnaylystCode = Utilities.GeneratePassword();
+                newProjectParticpants.Particpants = GetParticipants();
+
+               var success =  ProjectHelper.AddProject(newProjectParticpants);
+
+
+                if(success)
+                {
+                    // go to success screen
+                }
+                else
+                {
+                    DisplayAlert("Error", "error adding project", "OK");
+                }
+            }
+        }
+
+        private bool ValidateInput()
+        {
+            var allInputs = stacklayout.Children.Where(x => x is Entry);
+            foreach (var input in allInputs)
+            {
+                Entry txtbox = (Entry)input;
+
+                if(string.IsNullOrEmpty(txtbox.Text))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        private string GetParticipants()
+        {
+            List<string> names = new List<string>();
+            var allInputs = stacklayout.Children.Where(x => x is Entry);
+            foreach (var input in allInputs)
+            {
+                Entry txtbox = (Entry)input;
+                names.Add(txtbox.Text);
+            }
+
+            if(names.Count >= 1)
+            {
+                var formattedstring = string.Join(",", names);
+                return formattedstring;
+            }
+            else
+            {
+                return names.FirstOrDefault();
+            }
+        }
+
     }
 }

@@ -5,7 +5,7 @@ using MVA.Models.ProjectModel;
 using MVA.Helper;
 using System.Linq;
 using Xamarin.Forms;
-using System.Diagnostics;
+using Xamarin.Essentials;
 
 namespace MVA
 {
@@ -52,21 +52,28 @@ namespace MVA
 
                 if(success)
                 {
-                    string action = await DisplayActionSheet("Project Saved Successfully ", "Cancel", null, "Copy Interventionst Code", "Copy Analyst Code", "OK");
-                    Debug.WriteLine(action );
+                    string action = await DisplayActionSheet("Project Saved Successfully ", "Cancel", null, "Share Interventionst Code", "Share Analyst Code", "OK");
+                    
 
-
-                    if(action == "Copy Interventionst Code")
+                    if(action == "Share Interventionst Code")
                     {
-                        await DisplayAlert("intervention code", "code 1", "OK");
+                        await Share.RequestAsync(new ShareTextRequest
+                        {
+                            Text = newProjectParticpants.InterventionstCode,
+                            Title = "Interventionst Code"
+                        });
                     }
-                    else if(action == "Copy Analyst Code")
+                    else if(action == "Share Analyst Code")
                     {
-                        await DisplayAlert("intervention code", "code 1", "OK");
+                        await Share.RequestAsync(new ShareTextRequest
+                        {
+                            Text = newProjectParticpants.AnaylystCode,
+                            Title = "Analyst Code"
+                        });
                     }
                     else
                     {
-                        await DisplayAlert("OK", "OK", "OK");
+                        await Navigation.PushAsync(new HomePage());
                     }
                 }
                 else

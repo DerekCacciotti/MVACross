@@ -5,6 +5,7 @@ using MVA.Models.ProjectModel;
 using MVA.Helper;
 using System.Linq;
 using Xamarin.Forms;
+using System.Diagnostics;
 
 namespace MVA
 {
@@ -30,13 +31,13 @@ namespace MVA
             }
         }
 
-        void btnSubmit_Clicked(System.Object sender, System.EventArgs e)
+        async void btnSubmit_Clicked(System.Object sender, System.EventArgs e)
         {
             var isValid = ValidateInput();
 
             if(!isValid)
             {
-                DisplayAlert("Error", "One or more of the Partipants input boxes is empty. Please review your input and try again", "OK");
+                await DisplayAlert("Error", "One or more of the Partipants input boxes is empty. Please review your input and try again", "OK");
             }
             else
             {
@@ -51,11 +52,26 @@ namespace MVA
 
                 if(success)
                 {
-                    // go to success screen
+                    string action = await DisplayActionSheet("Project Saved Successfully ", "Cancel", null, "Copy Interventionst Code", "Copy Analyst Code", "OK");
+                    Debug.WriteLine(action );
+
+
+                    if(action == "Copy Interventionst Code")
+                    {
+                        await DisplayAlert("intervention code", "code 1", "OK");
+                    }
+                    else if(action == "Copy Analyst Code")
+                    {
+                        await DisplayAlert("intervention code", "code 1", "OK");
+                    }
+                    else
+                    {
+                        await DisplayAlert("OK", "OK", "OK");
+                    }
                 }
                 else
                 {
-                    DisplayAlert("Error", "error adding project", "OK");
+                   await DisplayAlert("Error", "error adding project", "OK");
                 }
             }
         }
@@ -101,5 +117,6 @@ namespace MVA
             }
         }
 
+       
     }
 }

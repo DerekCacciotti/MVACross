@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MVA.ProjectsListPage">
+       <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            
+            <Label Text=""
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   FontAttributes="Bold"
+                   FontSize="20"/>
+            <Button x:Name="btnAddProject" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Text="Add Project" Clicked="btnAddProject_Clicked"></Button>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <ListView x:Name="ProjectsListView"/>
+    </ContentPage.Content>
+</ContentPage>

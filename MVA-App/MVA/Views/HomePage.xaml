@@ -33,7 +33,7 @@
                     <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" Padding="15">
                         <Label TextColor="#222" FontSize = "25" Text="View Projects as Interventionst"/>
                         <Label Text="text goes here" FontSize = "16"/>
-                        <Button Margin="0,25,0,0" Text="View Projects" TextColor="White" BackgroundColor="#0097e6"/>
+                        <Button Margin="0,25,0,0" Text="View Projects" TextColor="White" BackgroundColor="#0097e6" Clicked="Button_Clicked"/>
                     </StackLayout>
 
                 </StackLayout>
@@ -53,7 +53,7 @@
                     <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" Padding="15">
                         <Label TextColor="#222" FontSize = "25" Text="View Projects as Analyst"/>
                         <Label Text="text goes here" FontSize = "16"/>
-                        <Button Margin="0,15,0,0" Text="View Projects" TextColor="White" BackgroundColor="#0097e6"/>
+                        <Button Margin="0,15,0,0" Text="View Projects" TextColor="White" BackgroundColor="#0097e6" Clicked="Button_Clicked_1"/>
                     </StackLayout>
 
                 </StackLayout>

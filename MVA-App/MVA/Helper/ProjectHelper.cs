@@ -66,5 +66,27 @@ namespace MVA.Helper
             return isSucessful;
 
         }
+
+        public static bool VerifyandAddProject(VeifyCodeRequest veifyCodeRequest)
+        {
+            bool isSuccessfull = false;
+            var clinet = new RestClient(url + "verifycode");
+            clinet.RemoteCertificateValidationCallback = (xsender, certificate, chain, sslPolicyErrors) => true;
+            var request = new RestRequest(Method.POST);
+            request.AddJsonBody(veifyCodeRequest);
+            var response = clinet.Execute(request);
+
+            if(response.IsSuccessful)
+            {
+                isSuccessfull = true;
+            }
+            else
+            {
+                isSuccessfull = false;
+            }
+
+            return isSuccessfull;
+
+        }
     }
 }

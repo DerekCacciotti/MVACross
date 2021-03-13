@@ -54,6 +54,7 @@ namespace MVA
                     var loginresponse = JsonConvert.DeserializeObject<LoginResponse>(response.Content);
                     Application.Current.Properties["Token"] = loginresponse.Token;
                     Application.Current.Properties["User"] = loginresponse.Username;
+                    Application.Current.Properties["UserPK"] = loginresponse.Id;
                     DisplayAlert("Yay", "Login successfull", "OK");
                     Navigation.PushAsync(new HomePage());
                 }

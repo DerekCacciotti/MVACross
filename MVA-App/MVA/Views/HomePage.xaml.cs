@@ -28,5 +28,15 @@ namespace MVA
         {
         }
 
+        // interventionst
+        void Button_Clicked(System.Object sender, System.EventArgs e)
+        {
+            Navigation.PushAsync(new ProjectsListPage("interventionst"));
+        }
+        // analyst 
+        void Button_Clicked_1(System.Object sender, System.EventArgs e)
+        {
+            Navigation.PushAsync(new ProjectsListPage("analyst"));
+        }
     }
 }

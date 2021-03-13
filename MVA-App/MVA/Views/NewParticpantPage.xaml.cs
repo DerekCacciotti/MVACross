@@ -62,6 +62,7 @@ namespace MVA
                             Text = newProjectParticpants.InterventionstCode,
                             Title = "Interventionst Code"
                         });
+                        await Navigation.PushAsync(new HomePage());
                     }
                     else if(action == "Share Analyst Code")
                     {
@@ -70,6 +71,7 @@ namespace MVA
                             Text = newProjectParticpants.AnaylystCode,
                             Title = "Analyst Code"
                         });
+                        await Navigation.PushAsync(new HomePage());
                     }
                     else
                     {

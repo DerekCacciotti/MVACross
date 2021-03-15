@@ -5,6 +5,8 @@ using RestSharp;
 using MVA.Models;
 using MVA.Models.ProjectModel;
 using Xamarin.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MVA.Helper
 {
@@ -87,6 +89,27 @@ namespace MVA.Helper
 
             return isSuccessfull;
 
+        }
+
+        public static List<Project> GetProjects(ProjectsListRequest projectsList)
+        {
+            List<Project> projects = new List<Project>();
+
+            var clinet = new RestClient(url + "allprojects");
+             clinet.RemoteCertificateValidationCallback = (xsender, certificate, chain, sslPolicyErrors) => true;
+            var request = new RestRequest(Method.POST);
+            request.AddJsonBody(projectsList);
+            var response = clinet.Execute(request);
+            projects = JsonConvert.DeserializeObject<List<Project>>(response.Content);
+
+            if (response.IsSuccessful)
+            {
+                return projects;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

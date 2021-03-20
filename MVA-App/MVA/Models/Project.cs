@@ -16,5 +16,6 @@ namespace MVA.Models
         public string Participants { get; set; }
         public string InterventionCode { get; set; }
         public string AnalystCode { get; set; }
+        
     }
 }

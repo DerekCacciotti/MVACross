@@ -111,5 +111,27 @@ namespace MVA.Helper
                 return null;
             }
         }
+
+
+        public static ProjectsDetailsModel GetCrierta(int ProjectPK)
+        {
+            var clinet = new RestClient(url + "getcritera");
+            clinet.RemoteCertificateValidationCallback = (xsender, certificate, chain, sslPolicyErrors) => true;
+            var request = new RestRequest(Method.POST);
+            CiretaRequest ciretaRequest = new CiretaRequest();
+            ciretaRequest.ProjectFK = ProjectPK;
+            request.AddJsonBody(ciretaRequest);
+            var response = clinet.Execute(request);
+            if (response.IsSuccessful)
+            {
+                return JsonConvert.DeserializeObject<ProjectsDetailsModel>(response.Content);
+            }
+            else
+            {
+                return null;
+            }
+            
+
+        }
     }
 }

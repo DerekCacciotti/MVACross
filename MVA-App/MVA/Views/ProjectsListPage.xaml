@@ -12,6 +12,42 @@
         </StackLayout>
     </NavigationPage.TitleView>
     <ContentPage.Content>
-        <ListView x:Name="ProjectsListView"/>
+        <ListView x:Name="ProjectsListView" HasUnevenRows="True" ItemSelected="ProjectsListView_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding ProjectName}" HorizontalTextAlignment="Start"></Label>  
+                        <Label Text="{Binding DependentVariable}" HorizontalTextAlignment="Start"></Label>
+
+                    </StackLayout>
+                        </ViewCell>
+                  <!--<ViewCell Height="100">
+
+                      <StackLayout HorizontalOptions="FillAndExpand" Padding="30,0,0,0" Orientation="Horizontal">  
+
+                          
+                      <Grid Padding="10" >
+  <Grid.ColumnDefinitions>
+    
+  <ColumnDefinition Width="*" ></ColumnDefinition>
+  <ColumnDefinition Width="*"></ColumnDefinition>
+  </Grid.ColumnDefinitions>
+
+    <Label Grid.Column="0" Grid.RowSpan="50" Text="Project Name" FontAttributes="Bold" HorizontalTextAlignment="Start"/>
+    <Label Grid.Column="1" Text="Dependent Varaiable" Grid.RowSpan="50"  HorizontalTextAlignment="End"/>
+    <Label Grid.Row="2" Text="{Binding ProjectName}" Grid.RowSpan="50" HorizontalTextAlignment="Start" Padding="5"></Label>
+      <Label Grid.Row="3" Text="{Binding DependentVariable}" Grid.RowSpan="50" Padding="6" Margin="35" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Start"></Label>
+  </Grid>
+
+
+                      </StackLayout>
+
+
+                  </ViewCell>-->
+                </DataTemplate>
+            </ListView.ItemTemplate>
+                    
+        </ListView>
     </ContentPage.Content>
 </ContentPage>

@@ -9,7 +9,7 @@ namespace MVA.Models
         public int numofParticipants { get; set; }
         public int baselinePoints { get; set; }
         public int interventionPoints { get; set; }
-        public int outlierFk { get; set; }
+        public int? outlierFk { get; set; }
         public int minStaggerPoints { get; set; }
         public OutlierFkNavigation outlierFkNavigation { get; set; }
         public ProjectFkNavigation projectFkNavigation { get; set; }
@@ -28,7 +28,7 @@ namespace MVA.Models
         public string projectName { get; set; }
         public int roleFk { get; set; }
         public int typeFk { get; set; }
-        public int outputTypeFk { get; set; }
+        public int? outputTypeFk { get; set; }
         public int criteraFk { get; set; }
         public DateTime projectCreateDate { get; set; }
         public string projectCreator { get; set; }

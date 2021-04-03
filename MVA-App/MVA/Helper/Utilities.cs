@@ -5,6 +5,7 @@ using System.Linq;
 using MVA.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 namespace MVA.Helper
 {
     public class Utilities
@@ -90,14 +91,14 @@ namespace MVA.Helper
             var clinet = new RestClient(url + "roles");
             clinet.RemoteCertificateValidationCallback = (xsender, certificate, chain, sslPolicyErrors) => true;
             var request = new RestRequest(Method.GET);
-            var respose = clinet.Execute(request);
+            var response = clinet.Execute(request);
 
-            if(respose.IsSuccessful)
+            if(response.IsSuccessful)
             {
                 Roles select = new Roles();
                 select.codeRolePk = 0;
                 select.roleName = "--SELECT--";
-                var roles = JsonConvert.DeserializeObject<RootRoles>(respose.Content);
+                var roles = JsonConvert.DeserializeObject<RootRoles>(response.Content);
                 roles.rolesobj.Insert(0, select);
                 return roles.rolesobj;
 
@@ -114,14 +115,14 @@ namespace MVA.Helper
             var clinet = new RestClient(url + "researchtypes");
             clinet.RemoteCertificateValidationCallback = (xsender, certificate, chain, sslPolicyErrors) => true;
             var request = new RestRequest(Method.GET);
-            var respose = clinet.Execute(request);
+            var response = clinet.Execute(request);
 
-            if (respose.IsSuccessful)
+            if (response.IsSuccessful)
             {
                 ResearchTypes select = new ResearchTypes();
                 select.idcodeResearchTypePk = 0;
                 select.researchType = "--SELECT--";
-                var types = JsonConvert.DeserializeObject<ResearchTypesRoot>(respose.Content);
+                var types = JsonConvert.DeserializeObject<ResearchTypesRoot>(response.Content);
                 types.types.Insert(0, select);
                 return types.types;
 
@@ -139,14 +140,14 @@ namespace MVA.Helper
             var clinet = new RestClient(url + "output");
             clinet.RemoteCertificateValidationCallback = (xsender, certificate, chain, sslPolicyErrors) => true;
             var request = new RestRequest(Method.GET);
-            var respose = clinet.Execute(request);
+            var response = clinet.Execute(request);
 
-            if (respose.IsSuccessful)
+            if (response.IsSuccessful)
             {
                 OutputTypes select = new OutputTypes();
                 select.idcodeOutputTypePk = 0;
                 select.outputType = "--SELECT--";
-                var outputTypes = JsonConvert.DeserializeObject<OutputTypesRoot>(respose.Content);
+                var outputTypes = JsonConvert.DeserializeObject<OutputTypesRoot>(response.Content);
                 outputTypes.outputtypes.Insert(0, select);
                 return outputTypes.outputtypes;
 
@@ -163,19 +164,38 @@ namespace MVA.Helper
             var clinet = new RestClient(url + "outlier");
             clinet.RemoteCertificateValidationCallback = (xsender, certificate, chain, sslPolicyErrors) => true;
             var request = new RestRequest(Method.GET);
-            var respose = clinet.Execute(request);
+            var response = clinet.Execute(request);
 
-            if (respose.IsSuccessful)
+            if (response.IsSuccessful)
             {
                 Outlier select = new Outlier();
                 select.codeOutlierPk = 0;
                 select.outlierType = "--SELECT--";
-                var outlier = JsonConvert.DeserializeObject<OutlierRoot>(respose.Content);
+                var outlier = JsonConvert.DeserializeObject<OutlierRoot>(response.Content);
                 outlier.outliersobj.Insert(0, select);
                 return outlier.outliersobj;
             }
             else
             {
+                return null;
+            }
+        }
+
+        public static string GetStatus(StatusRequest project)
+        {
+            var clinet = new RestClient(url + "status");
+            clinet.RemoteCertificateValidationCallback = (xsender, certificate, chain, sslPolicyErrors) => true;
+            var request = new RestRequest(Method.POST);
+            request.AddJsonBody(project);
+            var response = clinet.Execute(request);
+            if(response.IsSuccessful)
+            {
+                var statusresp = JsonConvert.DeserializeObject<StatusResponse>(response.Content);
+                return statusresp.status;
+            }
+            else
+            {
+                Debug.WriteLine(response.StatusCode);
                 return null;
             }
         }

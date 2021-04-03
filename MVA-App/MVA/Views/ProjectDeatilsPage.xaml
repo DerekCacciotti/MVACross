@@ -5,7 +5,7 @@
     x:Class="MVA.ProjectDeatilsPage">
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
-             <Label Text="status"
+             <Label Text=""
                    HorizontalOptions="CenterAndExpand"
                    VerticalOptions="CenterAndExpand"
                    FontSize="12"

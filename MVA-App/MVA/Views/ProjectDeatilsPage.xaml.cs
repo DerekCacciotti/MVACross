@@ -4,7 +4,7 @@ using MVA.Helper;
 using Xamarin.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-
+using MVA.Models;
 namespace MVA
 {
     public partial class ProjectDeatilsPage : ContentPage
@@ -20,6 +20,20 @@ namespace MVA
             InitializeComponent();
             _ProjectPK = ProjectPK;
             Title = "Project Details";
+            StatusRequest statusRequest = new StatusRequest();
+            statusRequest.ProjectPK = ProjectPK;
+
+            var projectstatus = Utilities.GetStatus(statusRequest);
+
+            if(!string.IsNullOrEmpty(projectstatus))
+            {
+                lblstatus.Text = projectstatus;
+            }
+            else
+            {
+                lblstatus.Text = "";
+            }
+
         }
 
         void btnDetails_Clicked(System.Object sender, System.EventArgs e)

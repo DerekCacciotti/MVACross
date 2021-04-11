@@ -133,5 +133,36 @@ namespace MVA.Helper
             
 
         }
+
+        public static List<Particpant> GetParticpants(int ProjectPK)
+        {
+            List<Particpant> particpants = new List<Particpant>();
+            var clinet = new RestClient(url + "getparticpants");
+            clinet.RemoteCertificateValidationCallback = (xsender, certificate, chain, sslPolicyErrors) => true;
+            var request = new RestRequest(Method.POST);
+            ParticpantsRequest particpantsRequest = new ParticpantsRequest();
+            particpantsRequest.ProjectPK = ProjectPK;
+            request.AddJsonBody(particpantsRequest);
+            var response = clinet.Execute(request);
+            if(response.IsSuccessful)
+            {
+                var data = JsonConvert.DeserializeObject<ParticpantResponse>(response.Content);
+
+                foreach(var person in data.particpants)
+                {
+                    Particpant particpant = new Particpant();
+                    particpant.Name = person;
+                    particpants.Add(particpant);
+                }
+
+                return particpants;
+
+
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

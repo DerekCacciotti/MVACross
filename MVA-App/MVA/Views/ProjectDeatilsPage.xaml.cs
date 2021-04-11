@@ -19,7 +19,7 @@ namespace MVA
         {
             InitializeComponent();
             _ProjectPK = ProjectPK;
-            Title = "Project Details";
+           // Title = "Project Details";
             StatusRequest statusRequest = new StatusRequest();
             statusRequest.ProjectPK = ProjectPK;
 
@@ -33,6 +33,15 @@ namespace MVA
             {
                 lblstatus.Text = "";
             }
+
+
+            var particpantsresp = ProjectHelper.GetParticpants(ProjectPK);
+
+           if(particpantsresp.Count != 0)
+            {
+                particpantsListView.ItemsSource = particpantsresp;
+            }
+
 
         }
 
